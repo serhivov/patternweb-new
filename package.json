@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "prettier --write \"patterns/**/*.{ts,tsx,js,jsx,json,css}\""
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,8 @@
     "transducers-js": "^0.4.174"
   },
   "devDependencies": {
-    "@types/transducers-js": "^0.4.4"
+    "@types/transducers-js": "^0.4.4",
+    "prettier": "^1.8.2",
+    "typescript": "^2.6.2"
   }
 }

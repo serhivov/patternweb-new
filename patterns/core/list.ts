@@ -1,14 +1,16 @@
 /**
  * Appends the first element onto the end of its input array
  */
-export const loopify = (array:any[]):any[] => {
+export const loopify = (array: any[]): any[] => {
   return [...array, array[0]];
-}
+};
 
 /**
  * Splits an array into groups that loop back to the first value
  */
-export const loopifyInGroups = (size:number, offset:number = 0) => (arr:any[]):any[] => {
+export const loopifyInGroups = (size: number, offset: number = 0) => (
+  arr: any[]
+): any[] => {
   let loopedArray = [];
   for (let i = 0; i < arr.length; i++) {
     let current = i + offset * i;
@@ -31,12 +33,12 @@ export const loopifyInGroups = (size:number, offset:number = 0) => (arr:any[]):a
   return loopedArray;
 };
 
-export const loopifyInPairs = loopifyInGroups(2)
+export const loopifyInPairs = loopifyInGroups(2);
 
 /**
  * Returns an valid index even when its input value is out of bounds
  */
-export const safeIndex = (arrayLength:number) => (index:number):number => {
+export const safeIndex = (arrayLength: number) => (index: number): number => {
   if (index < 0) {
     return (arrayLength + index % arrayLength) % arrayLength;
   } else if (index >= arrayLength) {
@@ -44,9 +46,9 @@ export const safeIndex = (arrayLength:number) => (index:number):number => {
   } else {
     return index;
   }
-}
+};
 
 /**
  * Wraps its input into an array
  */
-export const wrap = <T>(item):[T] => [item];
+export const wrap = <T>(item): [T] => [item];
