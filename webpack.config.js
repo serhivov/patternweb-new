@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  devtool: "source-map", // - Approach that plays well with UglifyJsPlugin; typically you might use this in Production
+  devtool: 'cheap-module-eval-source-map', // - Approach that plays well with UglifyJsPlugin; typically you might use this in Production
   context: path.resolve(__dirname, "./src"),
   entry: {
     x: "./x/index.tsx"
@@ -33,8 +33,7 @@ module.exports = {
         exclude: [/node_modules/],
         use: [
           {
-            loader: "babel-loader",
-            options: { presets: ["env"] }
+            loader: "babel-loader"
           }
         ]
       },
@@ -42,12 +41,14 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: [/node_modules/],
         use: [
+          // {
+          //   loader: "babel-loader"
+          // },
           {
-            loader: "babel-loader",
-            options: { presets: ["env"] }
-          },
-          {
-            loader: "ts-loader"
+            loader: "ts-loader",
+            options: {
+              transpileOnly: true
+            }
           }
         ]
       }
