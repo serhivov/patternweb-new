@@ -5,7 +5,7 @@ module.exports = {
   devtool: "source-map", // - Approach that plays well with UglifyJsPlugin; typically you might use this in Production
   context: path.resolve(__dirname, "./src"),
   entry: {
-    editor: "./editor/index.tsx"
+    x: "./x/index.tsx"
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"]
