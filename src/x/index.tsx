@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import Graph from "./views/graph";
 
 const rootEl = document.querySelector("main");
 
-ReactDOM.render(<h1>Main</h1>, rootEl);
+ReactDOM.render(<Graph />, rootEl);
