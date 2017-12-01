@@ -11,6 +11,7 @@ interface IState {
 }
 
 export default class Graph extends React.Component<{}, IState> {
+
   state = {
     nodes: {
       something: { x: 10, y: 10 },
