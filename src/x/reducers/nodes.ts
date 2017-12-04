@@ -1,9 +1,14 @@
-import { ADD_NODE, REMOVE_NODE } from "../actions";
+import { ADD_NODE, REMOVE_NODE, UPDATE_NODE } from "../actions";
 import { omit } from "lodash";
 
 const node = (state, action) => {
   switch (action.type) {
     case ADD_NODE:
+      return {
+        x: action.x,
+        y: action.y
+      };
+    case UPDATE_NODE:
       return {
         x: action.x,
         y: action.y
@@ -19,6 +24,11 @@ const nodes = (state = {}, action) => {
       return {
         ...state,
         [action.id]: node(undefined, action)
+      };
+    case UPDATE_NODE:
+      return {
+        ...state,
+        [action.id]: node(state[action.id], action)
       };
     case REMOVE_NODE:
       return omit(state, action.id);

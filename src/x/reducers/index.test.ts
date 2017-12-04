@@ -34,5 +34,15 @@ describe("reducers", () => {
       );
       expect(subject).toEqual({});
     });
+
+    it("handles UPDATE_NODE", () => {
+      const subject = nodes(
+        {
+          test: { x: 10, y: 20 }
+        },
+        { type: "UPDATE_NODE", id: "test", x: 5, y: 8 }
+      );
+      expect(subject).toEqual({ test: { x: 5, y: 8 } });
+    });
   });
 });

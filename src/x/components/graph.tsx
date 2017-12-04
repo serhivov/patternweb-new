@@ -1,6 +1,6 @@
 import * as React from "react";
-import Node from "../views/graph/components/node";
-import Edge from "../views/graph/components/edge";
+import Node from "./node";
+import Edge from "./edge";
 
 const handleDoubleClick = addNode => (
   event: React.MouseEvent<SVGSVGElement>

@@ -1,12 +1,13 @@
 import { combineEpics } from "redux-observable";
-import { ADD_NODE } from "../actions";
+import { ADD_NODE, addNode } from "../actions";
+import { Observable } from "rxjs";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/ignoreElements";
 
 function loadStoriesEpic(action$) {
   return action$
-    .filter(action => action.type === ADD_NODE)
+    .ofType(ADD_NODE)
     .do(action => console.log(action))
     .ignoreElements();
 }
