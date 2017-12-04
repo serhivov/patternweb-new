@@ -1,21 +1,23 @@
 import * as React from "react";
-import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import xApp from "./reducers";
 import Graph from "./containers/graph";
+import reducer from "./reducers";
+import { Provider } from "react-redux";
+import { createEpicMiddleware } from "redux-observable";
+import { createStore, applyMiddleware, compose } from "redux";
+import { render } from "react-dom";
+import { rootEpic } from "./epics";
+
+const composeEnhancers =
+  window["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] || compose;
 
 let store = createStore(
-  xApp,
-  window["__REDUX_DEVTOOLS_EXTENSION__"] &&
-    window["__REDUX_DEVTOOLS_EXTENSION__"]()
+  reducer,
+  composeEnhancers(applyMiddleware(createEpicMiddleware(rootEpic)))
 );
-
-const rootEl = document.querySelector("main");
 
 render(
   <Provider store={store}>
     <Graph />
   </Provider>,
-  rootEl
+  document.querySelector("main")
 );
