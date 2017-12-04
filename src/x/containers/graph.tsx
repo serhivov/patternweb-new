@@ -9,12 +9,8 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    removeNode: id => dispatch(removeNode(id)),
-    addNode: (x, y) => dispatch(addNode(x, y)),
-    addEdge: (source, target) => dispatch(addEdge(source, target))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Graph);
+export default connect(mapStateToProps, {
+  removeNode,
+  addNode,
+  addEdge
+})(Graph);
