@@ -48,9 +48,9 @@
   },
   "jest": {
     "setupFiles": [
-      "<rootDir>/jest/jest_shim.js"
+      "<rootDir>/.jest/jest_shim.js"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/jest/enzyme_setup.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/.jest/enzyme_setup.js",
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
