@@ -1,5 +1,6 @@
 import * as React from "react";
 import Node from "../views/graph/components/node";
+import Edge from "../views/graph/components/edge";
 
 const handleDoubleClick = addNode => (
   event: React.MouseEvent<SVGSVGElement>
@@ -9,10 +10,34 @@ const handleDoubleClick = addNode => (
   addNode(x, y);
 };
 
-const Graph = ({ nodes, removeNode, addNode }) => (
+const handleNodeRightClick = (removeNode, id: string) => (
+  event: React.MouseEvent<SVGTextElement>
+) => {
+  event.preventDefault();
+  removeNode(id);
+};
+
+const handleNodeMouseOver = (event: React.MouseEvent<SVGTextElement>) => {
+  console.log(event);
+};
+
+const Graph = ({ nodes, edges, removeNode, addNode }) => (
   <svg onDoubleClick={handleDoubleClick(addNode)}>
     {Object.entries(nodes).map(([id, n]) => (
-      <Node key={id} id={id} removeNode={removeNode} {...n} />
+      <Node
+        key={id}
+        id={id}
+        handleRightClick={handleNodeRightClick(removeNode, id)}
+        handleMouseOver={handleNodeMouseOver}
+        {...n}
+      />
+    ))}
+    {edges.map(([source, target]) => (
+      <Edge
+        key={[source, target].join("-")}
+        source={nodes[source]}
+        target={nodes[target]}
+      />
     ))}
   </svg>
 );
