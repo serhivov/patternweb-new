@@ -12,4 +12,5 @@ text {
 }
 line {
   stroke: red;
+  stroke-width: 3;
 }

@@ -5,7 +5,7 @@ export default function Node({
   x,
   y,
   handleRightClick,
-  handleMouseOver,
+  // handleMouseOver,
   handleClick
 }) {
   return (
@@ -13,7 +13,7 @@ export default function Node({
       x={x}
       y={y}
       onClick={handleClick}
-      onMouseOver={handleMouseOver}
+      // onMouseOver={handleMouseOver}
       onContextMenu={handleRightClick}
     >
       {id}

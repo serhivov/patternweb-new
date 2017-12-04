@@ -39,12 +39,19 @@ class Graph extends React.Component<IProps, {}> {
     removeNode(id);
   };
 
+  handleEdgeRightClick = (removeEdge, source: string, target: string) => (
+    event: React.MouseEvent<SVGLineElement>
+  ) => {
+    event.preventDefault();
+    removeEdge(source, target);
+  };
+
   handleNodeMouseOver = (event: React.MouseEvent<SVGTextElement>) => {
     console.log(event);
   };
 
   render() {
-    const { nodes, edges, removeNode, addNode } = this.props;
+    const { nodes, edges, removeNode, addNode, removeEdge } = this.props;
     return (
       <svg onDoubleClick={this.handleDoubleClick(addNode)}>
         {Object.entries(nodes).map(([id, n]) => (
@@ -62,6 +69,11 @@ class Graph extends React.Component<IProps, {}> {
             key={[source, target].join("-")}
             source={nodes[source]}
             target={nodes[target]}
+            handleRightClick={this.handleEdgeRightClick(
+              removeEdge,
+              source,
+              target
+            )}
           />
         ))}
       </svg>

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Graph from "../components/Graph";
-import { removeNode, addNode, addEdge } from "../actions";
+import { removeNode, addNode, addEdge, removeEdge } from "../actions";
 
 const mapStateToProps = state => {
   return {
@@ -12,5 +12,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   removeNode,
   addNode,
-  addEdge
+  addEdge,
+  removeEdge
 })(Graph as any);

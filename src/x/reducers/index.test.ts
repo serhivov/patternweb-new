@@ -12,6 +12,12 @@ describe("reducers", () => {
         [["a", "b"]]
       );
     });
+
+    it("handles REMOVE_EDGE action", () => {
+      expect(
+        edges([["a", "b"]], { type: "REMOVE_EDGE", source: "a", target: "b" })
+      ).toEqual([]);
+    });
   });
 
   describe("nodes", () => {
