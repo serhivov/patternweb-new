@@ -1,7 +1,21 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import Graph from "./views/graph";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import xApp from "./reducers";
+import Graph from "./containers/graph";
+
+let store = createStore(
+  xApp,
+  window["__REDUX_DEVTOOLS_EXTENSION__"] &&
+    window["__REDUX_DEVTOOLS_EXTENSION__"]()
+);
 
 const rootEl = document.querySelector("main");
 
-ReactDOM.render(<Graph />, rootEl);
+render(
+  <Provider store={store}>
+    <Graph />
+  </Provider>,
+  rootEl
+);

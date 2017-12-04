@@ -2,7 +2,8 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map', // - Approach that plays well with UglifyJsPlugin; typically you might use this in Production
+  // cheap-module-eval-source-map
+  devtool: 'cheap-module-source-map', // - Approach that plays well with UglifyJsPlugin; typically you might use this in Production
   context: path.resolve(__dirname, "./src"),
   entry: {
     x: "./x/index.tsx"
