@@ -13,4 +13,4 @@ export default connect(mapStateToProps, {
   removeNode,
   addNode,
   addEdge
-})(Graph);
+})(Graph as any);

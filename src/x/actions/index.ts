@@ -1,6 +1,5 @@
 import { idMaker } from "../../patterns/core/id";
-
-const nodeID = idMaker("node");
+import { v4 } from "uuid";
 
 export const ADD_NODE = "ADD_NODE";
 export const REMOVE_NODE = "REMOVE_NODE";
@@ -11,7 +10,7 @@ export const ADD_EDGE = "ADD_EDGE";
 export const addNode = (x, y) => {
   return {
     type: ADD_NODE,
-    id: nodeID.next().value,
+    id: v4(),
     x,
     y
   };
