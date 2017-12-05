@@ -16,7 +16,7 @@ const node = (state, action) => {
         ...state,
         args: {
           ...state.args,
-          [action.inport]: `$${action.source}>${action.outport}`
+          [action.inport]: `$${action.source}>${action.outport || ""}`
         }
       };
     default:

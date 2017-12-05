@@ -57,5 +57,24 @@ describe("reducers", () => {
         another: { x: 50, y: 50, args: { a: "$test>b" } }
       });
     });
+
+    it("handles CONNECT_NODE without outport", () => {
+      const subject = nodes(
+        {
+          test: { x: 10, y: 20 },
+          another: { x: 50, y: 50 }
+        },
+        {
+          type: "CONNECT_NODE",
+          source: "test",
+          target: "another",
+          inport: "a"
+        }
+      );
+      expect(subject).toEqual({
+        test: { x: 10, y: 20 },
+        another: { x: 50, y: 50, args: { a: "$test>" } }
+      });
+    });
   });
 });
