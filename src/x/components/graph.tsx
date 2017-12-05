@@ -11,6 +11,11 @@ interface IProps {
   removeEdge: any;
 }
 
+const inports = {
+  augend: "number",
+  addend: "number"
+};
+
 class Graph extends React.Component<IProps, {}> {
   state = {
     sourceNode: undefined
@@ -52,6 +57,10 @@ class Graph extends React.Component<IProps, {}> {
     console.log(event);
   };
 
+  handleNodeClick = id => (event: React.MouseEvent<SVGTextElement>) => {
+    alert(id);
+  };
+
   render() {
     const { nodes, edges, removeNode, addNode, removeEdge } = this.props;
     return (
@@ -60,7 +69,9 @@ class Graph extends React.Component<IProps, {}> {
           <Node
             key={id}
             id={id}
+            inports={inports}
             handleClick={this.handleClick(id)}
+            handleNodeClick={this.handleNodeClick}
             handleRightClick={this.handleNodeRightClick(removeNode, id)}
             handleMouseOver={this.handleNodeMouseOver}
             {...n}

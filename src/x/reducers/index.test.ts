@@ -27,8 +27,14 @@ describe("reducers", () => {
 
     it("handles ADD_NODE", () => {
       expect(
-        nodes(undefined, { type: "ADD_NODE", id: "test", x: 10, y: 20 })
-      ).toEqual({ test: { x: 10, y: 20 } });
+        nodes(undefined, {
+          type: "ADD_NODE",
+          id: "test",
+          x: 10,
+          y: 20,
+          component: "Add"
+        })
+      ).toEqual({ test: { x: 10, y: 20, component: "Add" } });
     });
 
     it("handles REMOVE_NODE", () => {
@@ -46,9 +52,9 @@ describe("reducers", () => {
         {
           test: { x: 10, y: 20 }
         },
-        { type: "UPDATE_NODE", id: "test", x: 5, y: 8 }
+        { type: "UPDATE_NODE", id: "test", x: 5, y: 8, component: "Add" }
       );
-      expect(subject).toEqual({ test: { x: 5, y: 8 } });
+      expect(subject).toEqual({ test: { x: 5, y: 8, component: "Add" } });
     });
   });
 });

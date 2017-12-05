@@ -9,13 +9,14 @@ export const UPDATE_NODE = "UPDATE_NODE";
 export const ADD_EDGE = "ADD_EDGE";
 export const REMOVE_EDGE = "REMOVE_EDGE";
 
-export const addNode = (x, y) => {
+export const addNode = (x, y, component = "Add") => {
   return {
     type: ADD_NODE,
     // id: v4(),
     id: shortid.generate(),
     x,
-    y
+    y,
+    component
   };
 };
 

@@ -1,4 +1,5 @@
 import * as React from "react";
+import Port from "./port";
 
 export default function Node({
   id,
@@ -6,17 +7,30 @@ export default function Node({
   y,
   handleRightClick,
   // handleMouseOver,
-  handleClick
+  handleClick,
+  handleNodeClick,
+  component,
+  inports
 }) {
   return (
-    <text
-      x={x}
-      y={y}
-      onClick={handleClick}
-      // onMouseOver={handleMouseOver}
-      onContextMenu={handleRightClick}
-    >
-      {id}
-    </text>
+    <g transform={`translate(${x},${y})`}>
+      <text
+        onClick={handleClick}
+        // onMouseOver={handleMouseOver}
+        onContextMenu={handleRightClick}
+      >
+        {id}
+      </text>
+      <text y={20}>{component}</text>
+      {Object.keys(inports).map((port, i) => (
+        <Port
+          key={port}
+          name={port}
+          handleClick={handleNodeClick}
+          id={[id, port].join(">")}
+          i={i}
+        />
+      ))}
+    </g>
   );
 }

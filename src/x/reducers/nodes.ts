@@ -6,12 +6,14 @@ const node = (state, action) => {
     case ADD_NODE:
       return {
         x: action.x,
-        y: action.y
+        y: action.y,
+        component: action.component
       };
     case UPDATE_NODE:
       return {
         x: action.x,
-        y: action.y
+        y: action.y,
+        component: action.component
       };
     default:
       return state;
