@@ -21,20 +21,24 @@ class Graph extends React.Component<IProps, {}> {
     sourceNode: undefined
   };
 
-  handleClick = (id: string) => (event: React.MouseEvent<SVGTextElement>) => {
+  handlePortClick = (id: string, isInport: boolean) => (
+    event: React.MouseEvent<SVGTextElement>
+  ) => {
     event.preventDefault();
+    console.log({ id });
     if (this.state.sourceNode) {
-      if (this.state.sourceNode !== id) {
+      if (isInport && this.state.sourceNode !== id) {
         this.props.addEdge(this.state.sourceNode, id);
         this.setState({ sourceNode: undefined });
       }
     } else {
-      this.setState({ sourceNode: id });
+      if (!isInport) this.setState({ sourceNode: id });
     }
   };
 
   handleDoubleClick = addNode => (event: React.MouseEvent<SVGSVGElement>) => {
     event.preventDefault();
+    console.log(event);
     const { clientX: x, clientY: y } = event;
     addNode(x, y);
   };
@@ -70,8 +74,8 @@ class Graph extends React.Component<IProps, {}> {
             key={id}
             id={id}
             inports={inports}
-            handleClick={this.handleClick(id)}
-            handleNodeClick={this.handleNodeClick}
+            handleNodeClick={this.handleNodeClick(id)}
+            handlePortClick={this.handlePortClick}
             handleRightClick={this.handleNodeRightClick(removeNode, id)}
             handleMouseOver={this.handleNodeMouseOver}
             {...n}

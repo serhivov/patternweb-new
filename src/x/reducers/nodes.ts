@@ -1,19 +1,23 @@
-import { ADD_NODE, REMOVE_NODE, UPDATE_NODE } from "../actions";
+import { ADD_NODE, REMOVE_NODE, UPDATE_NODE, CONNECT_NODE } from "../actions";
 import { omit } from "lodash";
 
 const node = (state, action) => {
   switch (action.type) {
     case ADD_NODE:
-      return {
-        x: action.x,
-        y: action.y,
-        component: action.component
-      };
     case UPDATE_NODE:
       return {
         x: action.x,
         y: action.y,
-        component: action.component
+        fn: action.fn,
+        args: action.args
+      };
+    case CONNECT_NODE:
+      return {
+        ...state,
+        args: {
+          ...state.args,
+          [action.inport]: `$${action.source}>${action.outport}`
+        }
       };
     default:
       return state;
@@ -31,6 +35,11 @@ const nodes = (state = {}, action) => {
       return {
         ...state,
         [action.id]: node(state[action.id], action)
+      };
+    case CONNECT_NODE:
+      return {
+        ...state,
+        [action.target]: node(state[action.target], action)
       };
     case REMOVE_NODE:
       return omit(state, action.id);

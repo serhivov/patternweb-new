@@ -6,19 +6,19 @@ export default function Node({
   x,
   y,
   handleRightClick,
-  handleClick,
+  handlePortClick,
   handleNodeClick,
-  component,
+  fn,
   inports
 }) {
   return (
     <g transform={`translate(${x},${y})`}>
       <text
         className="name"
-        onClick={handleClick}
         onContextMenu={handleRightClick}
+        onClick={handleNodeClick}
       >
-        {component}
+        {fn}
       </text>
 
       <g className="inports">
@@ -26,7 +26,7 @@ export default function Node({
           <Port
             key={port}
             name={port}
-            handleClick={handleNodeClick}
+            handleClick={handlePortClick}
             id={[id, port].join(">")}
             i={i}
             inport={true}
@@ -37,7 +37,7 @@ export default function Node({
       <g className="outports">
         <Port
           name="out"
-          handleClick={handleNodeClick}
+          handleClick={handlePortClick}
           id={[id, "out"].join(">")}
           i={0}
           inport={false}

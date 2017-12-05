@@ -5,18 +5,19 @@ import * as shortid from "shortid";
 export const ADD_NODE = "ADD_NODE";
 export const REMOVE_NODE = "REMOVE_NODE";
 export const UPDATE_NODE = "UPDATE_NODE";
+export const CONNECT_NODE = "CONNECT_NODE";
 
 export const ADD_EDGE = "ADD_EDGE";
 export const REMOVE_EDGE = "REMOVE_EDGE";
 
-export const addNode = (x, y, component = "Add") => {
+export const addNode = (x, y, fn = "Add") => {
   return {
     type: ADD_NODE,
     // id: v4(),
     id: shortid.generate(),
     x,
     y,
-    component
+    fn
   };
 };
 
@@ -33,6 +34,16 @@ export const updateNode = (id, x, y) => {
     id,
     x,
     y
+  };
+};
+
+export const connectNode = (source, outport, target, inport) => {
+  return {
+    type: CONNECT_NODE,
+    source,
+    outport,
+    target,
+    inport
   };
 };
 

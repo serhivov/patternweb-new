@@ -1,25 +1,6 @@
-import edges from "./edges";
 import nodes from "./nodes";
 
 describe("reducers", () => {
-  describe("edges", () => {
-    it("provides the initial state", () => {
-      expect(edges(undefined, {})).toEqual([]);
-    });
-
-    it("handles ADD_EDGE action", () => {
-      expect(edges([], { type: "ADD_EDGE", source: "a", target: "b" })).toEqual(
-        [["a", "b"]]
-      );
-    });
-
-    it("handles REMOVE_EDGE action", () => {
-      expect(
-        edges([["a", "b"]], { type: "REMOVE_EDGE", source: "a", target: "b" })
-      ).toEqual([]);
-    });
-  });
-
   describe("nodes", () => {
     it("provides the initial state", () => {
       expect(nodes(undefined, {})).toEqual({});
@@ -32,9 +13,9 @@ describe("reducers", () => {
           id: "test",
           x: 10,
           y: 20,
-          component: "Add"
+          fn: "Add"
         })
-      ).toEqual({ test: { x: 10, y: 20, component: "Add" } });
+      ).toEqual({ test: { x: 10, y: 20, fn: "Add" } });
     });
 
     it("handles REMOVE_NODE", () => {
@@ -52,9 +33,29 @@ describe("reducers", () => {
         {
           test: { x: 10, y: 20 }
         },
-        { type: "UPDATE_NODE", id: "test", x: 5, y: 8, component: "Add" }
+        { type: "UPDATE_NODE", id: "test", x: 5, y: 8, fn: "Add" }
       );
-      expect(subject).toEqual({ test: { x: 5, y: 8, component: "Add" } });
+      expect(subject).toEqual({ test: { x: 5, y: 8, fn: "Add" } });
+    });
+
+    it("handles CONNECT_NODE", () => {
+      const subject = nodes(
+        {
+          test: { x: 10, y: 20 },
+          another: { x: 50, y: 50 }
+        },
+        {
+          type: "CONNECT_NODE",
+          source: "test",
+          outport: "b",
+          target: "another",
+          inport: "a"
+        }
+      );
+      expect(subject).toEqual({
+        test: { x: 10, y: 20 },
+        another: { x: 50, y: 50, args: { a: "$test>b" } }
+      });
     });
   });
 });

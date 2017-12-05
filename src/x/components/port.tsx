@@ -4,7 +4,7 @@ function Port({ name, i, id, handleClick, inport }) {
   return (
     <text
       id={id}
-      onClick={handleClick(id)}
+      onClick={handleClick(id, inport)}
       x={inport ? 0 : 120}
       y={25 + 20 * i}
     >
