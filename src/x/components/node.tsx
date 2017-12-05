@@ -6,7 +6,6 @@ export default function Node({
   x,
   y,
   handleRightClick,
-  // handleMouseOver,
   handleClick,
   handleNodeClick,
   component,
@@ -15,22 +14,35 @@ export default function Node({
   return (
     <g transform={`translate(${x},${y})`}>
       <text
+        className="name"
         onClick={handleClick}
-        // onMouseOver={handleMouseOver}
         onContextMenu={handleRightClick}
       >
-        {id}
+        {component}
       </text>
-      <text y={20}>{component}</text>
-      {Object.keys(inports).map((port, i) => (
+
+      <g className="inports">
+        {Object.keys(inports).map((port, i) => (
+          <Port
+            key={port}
+            name={port}
+            handleClick={handleNodeClick}
+            id={[id, port].join(">")}
+            i={i}
+            inport={true}
+          />
+        ))}
+      </g>
+
+      <g className="outports">
         <Port
-          key={port}
-          name={port}
+          name="out"
           handleClick={handleNodeClick}
-          id={[id, port].join(">")}
-          i={i}
+          id={[id, "out"].join(">")}
+          i={0}
+          inport={false}
         />
-      ))}
+      </g>
     </g>
   );
 }

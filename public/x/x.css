@@ -30,3 +30,15 @@ line {
 line:hover {
   stroke-width: 8;
 }
+
+g.inports text {
+  text-anchor: start;
+}
+
+g.outports text {
+  text-anchor: end;
+}
+
+text.name {
+  font-size: 18px;
+}
