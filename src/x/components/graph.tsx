@@ -9,6 +9,8 @@ interface IProps {
   addNode: any;
   addEdge: any;
   removeEdge: any;
+  connectNode: any;
+  disconnectNode: any;
 }
 
 const inports = {
@@ -25,10 +27,12 @@ class Graph extends React.Component<IProps, {}> {
     event: React.MouseEvent<SVGTextElement>
   ) => {
     event.preventDefault();
-    console.log({ id });
     if (this.state.sourceNode) {
       if (isInport && this.state.sourceNode !== id) {
-        this.props.addEdge(this.state.sourceNode, id);
+        // this.props.addEdge(this.state.sourceNode, id);
+        const [source, outport] = this.state.sourceNode.split(">");
+        const [target, inport] = id.split("<");
+        this.props.connectNode(source, outport, target, inport);
         this.setState({ sourceNode: undefined });
       }
     } else {
@@ -50,11 +54,11 @@ class Graph extends React.Component<IProps, {}> {
     removeNode(id);
   };
 
-  handleEdgeRightClick = (removeEdge, source: string, target: string) => (
+  handleEdgeRightClick = (target, inport) => (
     event: React.MouseEvent<SVGLineElement>
   ) => {
     event.preventDefault();
-    removeEdge(source, target);
+    this.props.disconnectNode(target, inport);
   };
 
   handleNodeMouseOver = (event: React.MouseEvent<SVGTextElement>) => {
@@ -66,7 +70,18 @@ class Graph extends React.Component<IProps, {}> {
   };
 
   render() {
-    const { nodes, edges, removeNode, addNode, removeEdge } = this.props;
+    const { nodes, removeNode, addNode } = this.props;
+
+    const edges = Object.keys(nodes).reduce((arr, nodeID) => {
+      const node = nodes[nodeID];
+      if (node.args) {
+        Object.keys(node.args).forEach(inport => {
+          arr.push([nodeID, node.args[inport].split(">")[0].slice(1)]);
+        });
+      }
+      return arr;
+    }, []);
+
     return (
       <svg onDoubleClick={this.handleDoubleClick(addNode)}>
         {Object.entries(nodes).map(([id, n]) => (
@@ -81,18 +96,16 @@ class Graph extends React.Component<IProps, {}> {
             {...n}
           />
         ))}
-        {edges.map(([source, target]) => (
-          <Edge
-            key={[source, target].join("-")}
-            source={nodes[source]}
-            target={nodes[target]}
-            handleRightClick={this.handleEdgeRightClick(
-              removeEdge,
-              source,
-              target
-            )}
-          />
-        ))}
+        {edges.map(([source, target]) => {
+          return (
+            <Edge
+              key={[source, target].join("-")}
+              source={nodes[source]}
+              target={nodes[target]}
+              handleRightClick={this.handleEdgeRightClick}
+            />
+          );
+        })}
       </svg>
     );
   }

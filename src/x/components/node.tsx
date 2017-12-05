@@ -27,7 +27,7 @@ export default function Node({
             key={port}
             name={port}
             handleClick={handlePortClick}
-            id={[id, port].join(">")}
+            id={[id, port].join("<")}
             i={i}
             inport={true}
           />
