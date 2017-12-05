@@ -13,6 +13,10 @@
     "@types/cheerio" "*"
     "@types/react" "*"
 
+"@types/events@*":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@types/events/-/events-1.1.0.tgz#93b1be91f63c184450385272c47b6496fd028e02"
+
 "@types/jest@^21.1.8":
   version "21.1.8"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.8.tgz#d497213725684f1e5a37900b17a47c9c018f1a97"
@@ -21,9 +25,15 @@
   version "4.14.87"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.87.tgz#55f92183b048c2c64402afe472f8333f4e319a6b"
 
-"@types/node@*", "@types/node@^8.0.53":
+"@types/node@*":
   version "8.0.53"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
+
+"@types/node@^8.0.53":
+  version "8.0.54"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.54.tgz#3fd9357db4af388b79e03845340259440edffde6"
+  dependencies:
+    "@types/events" "*"
 
 "@types/react-dom@^16.0.3":
   version "16.0.3"
@@ -39,15 +49,23 @@
     "@types/react" "*"
     redux "^3.6.0"
 
-"@types/react@*", "@types/react@^16.0.25":
+"@types/react@*":
   version "16.0.25"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.25.tgz#bf696b83fe480c5e0eff4335ee39ebc95884a1ed"
+
+"@types/react@^16.0.25":
+  version "16.0.27"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.27.tgz#341899469ea2e98b48b11c18afb4d8361d03b013"
 
 "@types/redux@^3.6.0":
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@types/redux/-/redux-3.6.0.tgz#f1ebe1e5411518072e4fdfca5c76e16e74c1399a"
   dependencies:
     redux "*"
+
+"@types/shortid@^0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/shortid/-/shortid-0.0.29.tgz#8093ee0416a6e2bf2aa6338109114b3fbffa0e9b"
 
 "@types/transducers-js@^0.4.4":
   version "0.4.4"
@@ -106,8 +124,8 @@ ajv@^4.9.1:
     json-stable-stringify "^1.0.1"
 
 ajv@^5.1.0, ajv@^5.1.5:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.0.tgz#eb2840746e9dc48bd5e063a36e3fd400c5eab5a9"
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.1.tgz#b38bb8876d9e86bee994956a04e721e88b248eb2"
   dependencies:
     co "^4.6.0"
     fast-deep-equal "^1.0.0"
@@ -1980,9 +1998,13 @@ extglob@^0.3.1:
   dependencies:
     is-extglob "^1.0.0"
 
-extsprintf@1.3.0, extsprintf@^1.2.0:
+extsprintf@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.3.0.tgz#96918440e3041a7a414f8c52e3c574eb3c3e1e05"
+
+extsprintf@^1.2.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
 
 fast-deep-equal@^1.0.0:
   version "1.0.0"
@@ -2127,8 +2149,8 @@ fresh@0.5.2:
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
 
 fs-extra@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.2.tgz#f91704c53d1b461f893452b0c307d9997647ab6b"
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.3.tgz#0d852122e5bc5beb453fb028e9c0c9bf36340c94"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
@@ -3846,8 +3868,8 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
 prettier@^1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.8.2.tgz#bff83e7fd573933c607875e5ba3abbdffb96aeb8"
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.9.0.tgz#1a7205bdb6126b30cf8c0a7b2b86997162e1ee3e"
 
 pretty-format@^21.2.1:
   version "21.2.1"
@@ -4415,6 +4437,10 @@ shellwords@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
 
+shortid@^2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.8.tgz#033b117d6a2e975804f6f0969dbe7d3d0b355131"
+
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
@@ -4749,8 +4775,8 @@ trim-right@^1.0.1:
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
 ts-jest@^21.2.3:
-  version "21.2.3"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-21.2.3.tgz#d90cd143c433e8dfd9b8df54921c7f3f1d8b9819"
+  version "21.2.4"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-21.2.4.tgz#8fbcfbfbf0c58cced10dcc34a5190acc8c5312ef"
   dependencies:
     babel-core "^6.24.1"
     babel-plugin-istanbul "^4.1.4"
@@ -4759,7 +4785,6 @@ ts-jest@^21.2.3:
     cpx "^1.5.0"
     fs-extra "^4.0.2"
     jest-config "^21.2.1"
-    jest-util "^21.2.1"
     pkg-dir "^2.0.0"
     source-map-support "^0.5.0"
     yargs "^10.0.3"
@@ -5008,8 +5033,8 @@ webpack-sources@^1.0.1:
     source-map "~0.6.1"
 
 webpack@^3.9.1:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.9.1.tgz#9a60aa544ed5d4d454c069e3f521aa007e02643c"
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.10.0.tgz#5291b875078cf2abf42bdd23afe3f8f96c17d725"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^2.0.0"

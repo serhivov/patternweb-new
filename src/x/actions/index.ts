@@ -1,5 +1,6 @@
 import { idMaker } from "../../patterns/core/id";
-import { v4 } from "uuid";
+// import { v4 } from "uuid";
+import * as shortid from "shortid";
 
 export const ADD_NODE = "ADD_NODE";
 export const REMOVE_NODE = "REMOVE_NODE";
@@ -11,7 +12,8 @@ export const REMOVE_EDGE = "REMOVE_EDGE";
 export const addNode = (x, y) => {
   return {
     type: ADD_NODE,
-    id: v4(),
+    // id: v4(),
+    id: shortid.generate(),
     x,
     y
   };

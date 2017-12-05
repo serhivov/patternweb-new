@@ -1,16 +1,32 @@
+:root {
+  --bg-color: #222;
+}
 * {
   margin: 0;
   padding: 0;
 }
+body {
+  background: var(--bg-color);
+  font-family: Menlo;
+}
 svg {
   width: 100%;
   height: 100%;
+  background: var(--bg-color);
 }
 text {
   user-select: none;
   -webkit-user-select: none;
+  fill: #CCC;
+}
+text:hover {
+  fill: #FFF;
 }
 line {
   stroke: red;
-  stroke-width: 3;
+  stroke-width: 2.5;
+  transition: stroke-width 0.15s;
+}
+line:hover {
+  stroke-width: 8;
 }

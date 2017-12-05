@@ -7,6 +7,8 @@ interface IProps {
   edges: any;
   removeNode: any;
   addNode: any;
+  addEdge: any;
+  removeEdge: any;
 }
 
 class Graph extends React.Component<IProps, {}> {

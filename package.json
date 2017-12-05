@@ -20,6 +20,7 @@
     "redux": "^3.7.2",
     "redux-observable": "^0.17.0",
     "rxjs": "^5.5.3",
+    "shortid": "^2.2.8",
     "transducers-js": "^0.4.174",
     "uuid": "^3.1.0"
   },
@@ -32,6 +33,7 @@
     "@types/react-dom": "^16.0.3",
     "@types/react-redux": "^5.0.14",
     "@types/redux": "^3.6.0",
+    "@types/shortid": "^0.0.29",
     "@types/transducers-js": "^0.4.4",
     "@types/uuid": "^3.4.3",
     "babel-cli": "^6.26.0",
