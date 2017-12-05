@@ -76,5 +76,23 @@ describe("reducers", () => {
         another: { x: 50, y: 50, args: { a: "$test>" } }
       });
     });
+
+    it("handles DISCONNECT_NODE", () => {
+      const subject = nodes(
+        {
+          test: { x: 10, y: 20 },
+          another: { x: 50, y: 50, args: { a: "$test>" } }
+        },
+        {
+          type: "DISCONNECT_NODE",
+          target: "another",
+          inport: "a"
+        }
+      );
+      expect(subject).toEqual({
+        test: { x: 10, y: 20 },
+        another: { x: 50, y: 50 }
+      });
+    });
   });
 });
