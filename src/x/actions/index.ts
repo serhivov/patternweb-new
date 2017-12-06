@@ -1,73 +1,41 @@
-import { idMaker } from "../../patterns/core/id";
-// import { v4 } from "uuid";
 import * as shortid from "shortid";
 
 export const ADD_NODE = "ADD_NODE";
-export const REMOVE_NODE = "REMOVE_NODE";
-export const UPDATE_NODE = "UPDATE_NODE";
 export const CONNECT_NODE = "CONNECT_NODE";
 export const DISCONNECT_NODE = "DISCONNECT_NODE";
+export const REMOVE_NODE = "REMOVE_NODE";
+export const UPDATE_NODE = "UPDATE_NODE";
 
-export const ADD_EDGE = "ADD_EDGE";
-export const REMOVE_EDGE = "REMOVE_EDGE";
+export const addNode = (x, y, fn = "Add") => ({
+  type: ADD_NODE,
+  id: shortid.generate(),
+  x,
+  y,
+  fn
+});
 
-export const addNode = (x, y, fn = "Add") => {
-  return {
-    type: ADD_NODE,
-    // id: v4(),
-    id: shortid.generate(),
-    x,
-    y,
-    fn
-  };
-};
+export const connectNode = (source, outport, target, inport) => ({
+  type: CONNECT_NODE,
+  source,
+  outport,
+  target,
+  inport
+});
 
-export const removeNode = id => {
-  return {
-    type: REMOVE_NODE,
-    id
-  };
-};
+export const disconnectNode = (target, inport) => ({
+  type: DISCONNECT_NODE,
+  target,
+  inport
+});
 
-export const updateNode = (id, x, y) => {
-  return {
-    type: UPDATE_NODE,
-    id,
-    x,
-    y
-  };
-};
+export const removeNode = id => ({
+  type: REMOVE_NODE,
+  id
+});
 
-export const connectNode = (source, outport, target, inport) => {
-  return {
-    type: CONNECT_NODE,
-    source,
-    outport,
-    target,
-    inport
-  };
-};
-
-export const disconnectNode = (target, inport) => {
-  return {
-    type: DISCONNECT_NODE,
-    target,
-    inport
-  };
-};
-
-export const addEdge = (source, target) => {
-  return {
-    type: ADD_EDGE,
-    source,
-    target
-  };
-};
-
-export const removeEdge = (source, target) => {
-  return {
-    type: REMOVE_EDGE,
-    source,
-    target
-  };
-};
+export const updateNode = (id, x, y) => ({
+  type: UPDATE_NODE,
+  id,
+  x,
+  y
+});

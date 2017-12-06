@@ -14,7 +14,7 @@ export default function Edge({
       x1={source.x + 120}
       y1={source.y + 20}
       x2={target.x}
-      y2={target.y + Object.keys(component.inports).indexOf(inport) * 20 + 20 }
+      y2={target.y + Object.keys(component.inports).indexOf(inport) * 20 + 20}
     />
   );
 }

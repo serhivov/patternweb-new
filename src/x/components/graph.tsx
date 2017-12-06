@@ -14,14 +14,14 @@ interface IProps {
 }
 
 const components = {
-  "Add": {
-    fn: (augend=1, addend=1) => augend + addend,
+  Add: {
+    fn: (augend = 1, addend = 1) => augend + addend,
     inports: {
       augend: "number",
       addend: "number"
     }
   }
-}
+};
 
 class Graph extends React.Component<IProps, {}> {
   state = {
@@ -47,7 +47,6 @@ class Graph extends React.Component<IProps, {}> {
 
   handleDoubleClick = addNode => (event: React.MouseEvent<SVGSVGElement>) => {
     event.preventDefault();
-    console.log(event);
     const { clientX: x, clientY: y } = event;
     addNode(x, y);
   };
@@ -71,7 +70,7 @@ class Graph extends React.Component<IProps, {}> {
   };
 
   handleNodeClick = id => (event: React.MouseEvent<SVGTextElement>) => {
-    console.log(id)
+    console.log(id);
   };
 
   render() {
@@ -81,13 +80,8 @@ class Graph extends React.Component<IProps, {}> {
       const node = nodes[nodeID];
       if (node.args) {
         Object.keys(node.args).forEach(inport => {
-          const [source, outport] = node.args[inport].split(">")
-          arr.push([
-            source.slice(1),
-            outport,
-            nodeID,
-            inport
-          ]);
+          const [source, outport] = node.args[inport].split(">");
+          arr.push([source.slice(1), outport, nodeID, inport]);
         });
       }
       return arr;
@@ -99,7 +93,7 @@ class Graph extends React.Component<IProps, {}> {
           <Node
             key={id}
             id={id}
-            component={components['Add']}
+            component={components["Add"]}
             handleNodeClick={this.handleNodeClick(id)}
             handlePortClick={this.handlePortClick}
             handleRightClick={this.handleNodeRightClick(removeNode, id)}
@@ -110,7 +104,7 @@ class Graph extends React.Component<IProps, {}> {
         {edges.map(([source, outport, target, inport]) => {
           return (
             <Edge
-              component={components['Add']}
+              component={components["Add"]}
               key={[source, target].join("-")}
               source={nodes[source]}
               outport={outport}

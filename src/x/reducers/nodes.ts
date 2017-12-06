@@ -56,7 +56,6 @@ const nodes = (state = {}, action) => {
         [action.target]: node(state[action.target], action)
       };
     case DISCONNECT_NODE:
-      console.log({ action })
       return {
         ...state,
         [action.target]: node(state[action.target], action)
