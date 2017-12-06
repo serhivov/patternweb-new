@@ -11,8 +11,30 @@ class SignalGraph {
   }
 
   addNode(key, id, args): this {
-    if (this.nodes[id]) throw Error("Node already exists with that ID");
-    this.nodes[id] = this.nodes[id] || new Node(this.components[key], id, args);
+    const { nodes, signal, components, run } = this;
+
+    if (nodes[id]) throw Error("Node already exists with that ID");
+    nodes[id] = nodes[id] || new Node(components[key], id, args);
+
+    Object.entries(args)
+      .filter(([key, value]) => value.toString().startsWith("$"))
+      .forEach(([key, source]) => {
+        nodes[id].listeners.push(
+          signal
+            .filter(payload => {
+              return `$${payload[0]}` === source;
+            })
+            .add(payload => {
+              nodes[id].update({ [key]: payload[1] });
+              this.run(id);
+            })
+        );
+        this.run(source.slice(1));
+      });
+
+    // should this be run?
+    // this.run(id)
+
     return this;
   }
 
@@ -23,17 +45,21 @@ class SignalGraph {
     return this;
   }
 
-  updateNode(id, args): this {
+  updateNode(id, args, run = false): this {
     if (this.nodes[id]) {
       this.nodes[id].update(args);
-      this.run(id, true);
+      if (run) this.run(id, true);
     }
     return this;
   }
 
   run(id, exists = false): this {
     if (exists || this.nodes[id]) {
-      this.nodes[id].run(result => this.signal.dispatch([id, result]));
+      this.nodes[id].run(result => {
+        const toDispatch = [id, result];
+        console.log(toDispatch);
+        this.signal.dispatch(toDispatch);
+      });
     }
     return this;
   }

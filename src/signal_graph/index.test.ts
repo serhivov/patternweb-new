@@ -14,8 +14,8 @@ const components = {
 it("has nodes", () => {
   const sg = new SignalGraph(components);
   sg
-    .addNode("add", "add2", { b: 1 })
-    .updateNode("add2", { a: 2 })
+    .addNode("add", "add1", { a: 2, b: 1 })
+    .addNode("add", "add2", { a: "$add1", b: 10 })
     .log();
 
   expect(sg).toBeTruthy();
