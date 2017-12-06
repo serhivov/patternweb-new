@@ -15,6 +15,10 @@ let store = createStore(
   composeEnhancers(applyMiddleware(createEpicMiddleware(rootEpic)))
 );
 
+// store.subscribe(() => {
+//   console.info(store.getState().nodes)
+// })
+
 render(
   <Provider store={store}>
     <Graph />
