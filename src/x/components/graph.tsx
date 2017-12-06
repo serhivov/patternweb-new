@@ -1,27 +1,18 @@
 import * as React from "react";
-import Node from "./node";
 import Edge from "./edge";
+import Node from "./node";
+import components from "../functions";
 
 interface IProps {
-  nodes: any;
-  edges: any;
-  removeNode: any;
-  addNode: any;
   addEdge: any;
-  removeEdge: any;
+  addNode: any;
   connectNode: any;
   disconnectNode: any;
+  edges: any;
+  nodes: any;
+  removeEdge: any;
+  removeNode: any;
 }
-
-const components = {
-  Add: {
-    fn: (augend = 1, addend = 1) => augend + addend,
-    inports: {
-      augend: "number",
-      addend: "number"
-    }
-  }
-};
 
 class Graph extends React.Component<IProps, {}> {
   state = {
@@ -34,7 +25,6 @@ class Graph extends React.Component<IProps, {}> {
     event.preventDefault();
     if (this.state.sourceNode) {
       if (isInport && this.state.sourceNode !== id) {
-        // this.props.addEdge(this.state.sourceNode, id);
         const [source, outport] = this.state.sourceNode.split(">");
         const [target, inport] = id.split("<");
         this.props.connectNode(source, outport, target, inport);
@@ -74,30 +64,19 @@ class Graph extends React.Component<IProps, {}> {
   };
 
   render() {
-    const { nodes, removeNode, addNode } = this.props;
-
-    const edges = Object.keys(nodes).reduce((arr, nodeID) => {
-      const node = nodes[nodeID];
-      if (node.args) {
-        Object.keys(node.args).forEach(inport => {
-          const [source, outport] = node.args[inport].split(">");
-          arr.push([source.slice(1), outport, nodeID, inport]);
-        });
-      }
-      return arr;
-    }, []);
+    const { nodes, edges, removeNode, addNode } = this.props;
 
     return (
       <svg onDoubleClick={this.handleDoubleClick(addNode)}>
         {Object.entries(nodes).map(([id, n]) => (
           <Node
-            key={id}
-            id={id}
             component={components["Add"]}
+            handleMouseOver={this.handleNodeMouseOver}
             handleNodeClick={this.handleNodeClick(id)}
             handlePortClick={this.handlePortClick}
             handleRightClick={this.handleNodeRightClick(removeNode, id)}
-            handleMouseOver={this.handleNodeMouseOver}
+            id={id}
+            key={id}
             {...n}
           />
         ))}
@@ -105,12 +84,12 @@ class Graph extends React.Component<IProps, {}> {
           return (
             <Edge
               component={components["Add"]}
-              key={[source, target].join("-")}
-              source={nodes[source]}
-              outport={outport}
-              target={nodes[target]}
-              inport={inport}
               handleRightClick={this.handleEdgeRightClick}
+              inport={inport}
+              key={[source, target].join("-")}
+              outport={outport}
+              source={nodes[source]}
+              target={nodes[target]}
             />
           );
         })}
