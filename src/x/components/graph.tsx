@@ -13,10 +13,15 @@ interface IProps {
   disconnectNode: any;
 }
 
-const inports = {
-  augend: "number",
-  addend: "number"
-};
+const components = {
+  "Add": {
+    fn: (augend=1, addend=1) => augend + addend,
+    inports: {
+      augend: "number",
+      addend: "number"
+    }
+  }
+}
 
 class Graph extends React.Component<IProps, {}> {
   state = {
@@ -66,7 +71,7 @@ class Graph extends React.Component<IProps, {}> {
   };
 
   handleNodeClick = id => (event: React.MouseEvent<SVGTextElement>) => {
-    alert(id);
+    console.log(id)
   };
 
   render() {
@@ -76,7 +81,13 @@ class Graph extends React.Component<IProps, {}> {
       const node = nodes[nodeID];
       if (node.args) {
         Object.keys(node.args).forEach(inport => {
-          arr.push([nodeID, node.args[inport].split(">")[0].slice(1)]);
+          const [source, outport] = node.args[inport].split(">")
+          arr.push([
+            source.slice(1),
+            outport,
+            nodeID,
+            inport
+          ]);
         });
       }
       return arr;
@@ -88,7 +99,7 @@ class Graph extends React.Component<IProps, {}> {
           <Node
             key={id}
             id={id}
-            inports={inports}
+            component={components['Add']}
             handleNodeClick={this.handleNodeClick(id)}
             handlePortClick={this.handlePortClick}
             handleRightClick={this.handleNodeRightClick(removeNode, id)}
@@ -96,12 +107,15 @@ class Graph extends React.Component<IProps, {}> {
             {...n}
           />
         ))}
-        {edges.map(([source, target]) => {
+        {edges.map(([source, outport, target, inport]) => {
           return (
             <Edge
+              component={components['Add']}
               key={[source, target].join("-")}
               source={nodes[source]}
+              outport={outport}
               target={nodes[target]}
+              inport={inport}
               handleRightClick={this.handleEdgeRightClick}
             />
           );

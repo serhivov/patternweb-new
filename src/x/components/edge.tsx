@@ -1,6 +1,7 @@
 import * as React from "react";
 
 export default function Edge({
+  component,
   source,
   outport,
   target,
@@ -10,10 +11,10 @@ export default function Edge({
   return (
     <line
       onContextMenu={handleRightClick(target, inport)}
-      x1={source.x}
-      y1={source.y}
+      x1={source.x + 120}
+      y1={source.y + 20}
       x2={target.x}
-      y2={target.y}
+      y2={target.y + Object.keys(component.inports).indexOf(inport) * 20 + 20 }
     />
   );
 }

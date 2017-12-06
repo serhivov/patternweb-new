@@ -9,7 +9,7 @@ export default function Node({
   handlePortClick,
   handleNodeClick,
   fn,
-  inports
+  component
 }) {
   return (
     <g transform={`translate(${x},${y})`}>
@@ -22,7 +22,7 @@ export default function Node({
       </text>
 
       <g className="inports">
-        {Object.keys(inports).map((port, i) => (
+        {Object.keys(component.inports).map((port, i) => (
           <Port
             key={port}
             name={port}

@@ -1,9 +1,9 @@
 import {
   ADD_NODE,
-  REMOVE_NODE,
-  UPDATE_NODE,
   CONNECT_NODE,
-  DISCONNECT_NODE
+  DISCONNECT_NODE,
+  REMOVE_NODE,
+  UPDATE_NODE
 } from "../actions";
 import { omit } from "lodash";
 
@@ -56,6 +56,7 @@ const nodes = (state = {}, action) => {
         [action.target]: node(state[action.target], action)
       };
     case DISCONNECT_NODE:
+      console.log({ action })
       return {
         ...state,
         [action.target]: node(state[action.target], action)
